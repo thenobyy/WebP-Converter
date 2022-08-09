@@ -3,11 +3,11 @@ from tkinter import filedialog
 from tkinter import *
 import shutil
 
-
+##Try to copy cwebp-Files to System
 
 #if not os.path.exists(os.getenv('ProgramFiles')+"\cwebp\cwebp.exe"):
 #    shutil.copytree("cwebp", os.getenv('ProgramFiles')+"\cwebp")
-#    print("Installation fehlerhaft")
+#    print("Installation failed")
 #    os.system("pause")
 #    exit()
     
@@ -18,10 +18,9 @@ def checkData():
     pfad = entEingabe.get()
     pfad = pfad.strip()
     if not os.path.exists(pfad):
-        lbAusgabe["text"] = "Diese Datei existiert nicht"
+        lbAusgabe["text"] = "This file does not exist"
 
     else:
-        lbAusgabe["text"] = "Datei gefunden"
         output = '"'+pfad+'"'
         pfad = '"'+pfad+'"'
         print(pfad)
@@ -35,19 +34,19 @@ def checkData():
             output = output.replace(".png",".webp")
             convert(pfad,output)
         else:
-            lbAusgabe["text"] = "Dateiformat ungültig (Zulässige Formate: jpg,jpeg,png)"
+            lbAusgabe["text"] = "Invalid file format (allowed formats: jpg,jpeg,png)"
             
         
 def convert(p,o):
     try:
         subprocess.call(f"cwebp -quiet {p} -o {o}" ,shell=True)
-        lbAusgabe["text"] = "Konvertierung erfolgreich"
+        lbAusgabe["text"] = "Conversion successful"
     except:
-        lbAusgabe["text"] = "Es ist ein Fehler aufgetreten"
+        lbAusgabe["text"] = "An error has occurred"
 
 def openFile():
     entEingabe.delete(0,"end")
-    filename =  filedialog.askopenfilename(title = "Datei auswählen",filetypes = (("jpeg,png,jpg",["*.jpeg","*.png","*.jpg"]),("all files","*.*")))
+    filename =  filedialog.askopenfilename(title = "Choose a file",filetypes = (("jpeg,png,jpg",["*.jpeg","*.png","*.jpg"]),("all files","*.*")))
     entEingabe.insert(0, filename)
     
 fenster = tkinter.Tk()
@@ -74,7 +73,7 @@ lbBrand = tkinter.Label(fenster)
 lbBrand["image"] = imBrand
 lbBrand.grid(row=0, column=1, padx= 10, pady = 10)
 
-lbEingabe = tkinter.Label(fenster, text="Wähle eine Datei zum konvertieren", font=('Helvetica', 16))
+lbEingabe = tkinter.Label(fenster, text="Choose a file to convert", font=('Helvetica', 16))
 lbEingabe.grid(row=1,column=0, columnspan=2, padx=10, pady = 10)
 
 
