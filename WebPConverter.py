@@ -39,7 +39,7 @@ def checkData():
         
 def convert(p,o):
     try:
-        subprocess.call(f"cwebp -quiet {p} -o {o}" ,shell=True)
+        subprocess.call(f"cwebp -quiet {p} -o {o}" ,shell=False)
         lbAusgabe["text"] = "Conversion successful"
     except:
         lbAusgabe["text"] = "An error has occurred"
