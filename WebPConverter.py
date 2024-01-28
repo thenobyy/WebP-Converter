@@ -1,5 +1,4 @@
 import subprocess, tkinter, os
-from tkinter import filedialog
 from tkinter import *
 import shutil
 
